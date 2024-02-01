@@ -6,7 +6,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #dddddd;
+    background-color: #111;
   }
   
   li {
@@ -23,7 +23,15 @@ ul {
   
   /* Change the link color to #111 (black) on hover */
   li a:hover {
-    background-color: #111;
+    background-color: #8d2bb4;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .Tag{
+    background-color:#8d2bb4
   }
 
   .active {
@@ -33,6 +41,7 @@ ul {
         [class*="col-"] {
             float: left;
             padding: 15px;
+            border: 1px solid red;
             }
         .row::after {
             content: "";
@@ -52,3 +61,4 @@ ul {
     .col-10 {width: 83.33%;}
     .col-11 {width: 91.66%;}
     .col-12 {width: 100%;}
+    
