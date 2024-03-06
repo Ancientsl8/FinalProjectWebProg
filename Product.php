@@ -54,7 +54,7 @@ $result = mysqli_query($con, $query);
                 {
                 ?>
                 <div class="card">
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/Horizontal/E-commerce/Products/4.webp"
+                <img src="<?php echo $row["itemimage"] ?>"
                   class="card-img-top" alt="Laptop" />
                 <div class="card-body">
       
