@@ -19,9 +19,20 @@ $result = mysqli_query($con, $query);
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<?php
+        session_start ();
+        if(isset($_SESSION["login"])) {
+            $a = "Profile";
+            $b = "profile.php";
+        }
 
+        else if(!isset($_SESSION["login"])){
+            $a = "Login";
+            $b = "Login.php";
+        }
+        ?>
     
-    <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+<nav class="navbar bg-dark navbar-dark navbar-expand-lg">
 		<div class="container">
 			<a href="index.html" class="navbar-brand"><img src="img/logo.jpg" alt="Logo" title="Logo"></a>
 
@@ -33,41 +44,70 @@ $result = mysqli_query($con, $query);
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="" class="nav-link">About Us</a></li>
-					<li class="nav-item"><a href="Product.php" class="nav-link active">Products</a></li>
-					<li class="nav-item"><a href="Login.html" class="nav-link">Login</a></li>
-					<li class="nav-item"><a href="Cart.html" class="nav-link">Cart</a></li>
+        <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="AboutUs.php" class="nav-link">About Us</a></li>
+					<li class="nav-item"><a href="Product.php" class="nav-link">Products</a></li>
+					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link"><?php echo $a ?></a></li>
+					<li class="nav-item"><a href="Cart.php" class="nav-link">Cart</a></li>
 				</ul>
 				
 
 			</div>
 		</div>
 	</nav>
-    <section style="background-color: #eee;">
-        <div class="container py-5">
-          <div class="row">
-            <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+  <section style="background-color: #eee;">
+  <div class="text-center container py-5">
+    <h4 class="mt-4 mb-5"><strong>Products</strong></h4>
+    <div class="row">
                 <?php
-
                 while($row = mysqli_fetch_assoc($result))
                 {
                 ?>
-                <div class="card">
-                <img src="<?php echo $row["itemimage"] ?>"
-                  class="card-img-top" alt="Laptop" />
-                <div class="card-body">
-      
-                  <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0"><?php echo $row['itemname']  ?></h5>
-                    <h5 class="text-dark mb-0"><?php echo $row['price']  ?></h5>
-                  </div>
-      
-                  <div class="d-flex justify-content-between mb-2">
-                    <p class="text-muted mb-0">Available: <span class="fw-bold"><?php echo $row['quantity']  ?></span></p>
-                  </div>
+                <div class="col-lg-4 col-md-12 mb-4">
+                  <div class="card">
+                    <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
+                        data-mdb-ripple-color="light">
+                        <img src="<?php echo $row["itemimage"] ?>"
+                          class="w-100" />
+                          <a href="#!">
+                            <div class="mask">
+                              <div class="d-flex justify-content-start align-items-end h-100">
+                              </div>
+                           </div>
+                          <div class="hover-overlay">
+                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                    </div>
+                    </a>
                 </div>
-              </div>
+              <div class="card-body">
+            <a href="" class="text-reset">
+              <h5 class="card-title mb-3"><?php echo $row['itemname']  ?></h5>
+            </a>
+            <div class="d-flex justify-content-between mb-2">
+                    <p class="text-muted mb-0">Available: <span class="fw-bold"><?php echo $row['quantity']?></span></p>
+                    <form action="cartprocess.php" method="POST">
+                    <input type="text" name="quantity" placeholder="Quantity" value="1">
+                  </div>
+            <h6 class="mb-3"><?php echo $row['price']?></h6>
+            <div class="d-flex justify-content-between align-items-center pb-2 mb-1">
+              <input type="hidden" name="hidden_id" value="<?php echo $row['item_id']?>">
+              <button type="submit" class="btn btn-primary" name="add_to_cart">Add to Cart</button>
+              <?php 
+                        if(isset($_REQUEST["err"]))
+	                    $msg="Invalid Quantity!";
+                        ?>
+                        <p style="color:red;">
+                        <?php if(isset($msg))
+                        {
+                                
+                        echo $msg;
+                        }
+                        ?>
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
                 <?php
                 }
                 ?> 

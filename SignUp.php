@@ -13,6 +13,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<?php
+session_start ();
+if(isset($_SESSION["login"])) {
+	$a = "Profile";
+	$b = "profile.php";
+}
+
+else if(!isset($_SESSION["login"])){
+	$a = "Login";
+	$b = "Login.php";
+}
+?>
   <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
 		<div class="container">
 			<a href="index.html" class="navbar-brand"><img src="img/logo.jpg" alt="Logo" title="Logo"></a>
@@ -25,11 +37,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="" class="nav-link">About Us</a></li>
+					<li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="AboutUs.php" class="nav-link">About Us</a></li>
 					<li class="nav-item"><a href="Product.php" class="nav-link">Products</a></li>
-					<li class="nav-item"><a href="Login.html" class="nav-link active">Login</a></li>
-					<li class="nav-item"><a href="Cart.html" class="nav-link">Cart</a></li>
+					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link"><?php echo $a ?></a></li>
+					<li class="nav-item"><a href="Cart.php" class="nav-link">Cart</a></li>
 				</ul>
 				
 

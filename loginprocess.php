@@ -14,6 +14,7 @@ $res = mysqli_query($con,"select* from profile where username='$a'and password='
 $result=mysqli_fetch_array($res);
 if($result)
 {
+	$_SESSION["user_id"] = $result['user_id'];
 	$_SESSION["username"] = $a;
 	$_SESSION["login"]="1";
 	header("location:profile.php");

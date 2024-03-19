@@ -14,6 +14,19 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<?php
+session_start ();
+if(isset($_SESSION["login"])) {
+	$a = "Profile";
+	$b = "profile.php";
+}
+
+else if(!isset($_SESSION["login"])){
+	$a = "Login";
+	$b = "Login.php";
+}
+?>
+
   <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
 		<div class="container">
 			<a href="index.html" class="navbar-brand"><img src="img/logo.jpg" alt="Logo" title="Logo"></a>
@@ -26,11 +39,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="" class="nav-link">About Us</a></li>
-					<li class="nav-item"><a href="Product.php" class="nav-link active">Products</a></li>
-					<li class="nav-item"><a href="Login.html" class="nav-link">Login</a></li>
-					<li class="nav-item"><a href="Cart.html" class="nav-link">Cart</a></li>
+        <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="AboutUs.php" class="nav-link">About Us</a></li>
+					<li class="nav-item"><a href="Product.php" class="nav-link">Products</a></li>
+					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link"><?php echo $a ?></a></li>
+					<li class="nav-item"><a href="Cart.php" class="nav-link">Cart</a></li>
 				</ul>
 				
 
@@ -48,9 +61,9 @@
                     <div class="card-body p-md-5 mx-md-4">
       
                       <div class="text-center">
-                        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                        <img src="img/logo.jpg"
                           style="width: 185px;" alt="logo">
-                        <h4 class="mt-1 mb-5 pb-1">We are The Lotus Team</h4>
+                        <h4 class="mt-1 mb-5 pb-1">Welcome to the Kitchen</h4>
                       </div>
       
                       <form action="loginprocess.php" method="POST">
@@ -74,7 +87,7 @@
       
                         <div class="d-flex align-items-center justify-content-center pb-4">
                           <p class="mb-0 me-2">Don't have an account?</p>
-                          <a href="SignUp.html" class="btn btn-outline-danger btn-lg">Create an Account</a>
+                          <a href="SignUp.php" class="btn btn-outline-danger btn-lg">Create an Account</a>
                         </div>
 
                         <?php 

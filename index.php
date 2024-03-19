@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +14,18 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
+<?php
+session_start ();
+if(isset($_SESSION["login"])) {
+	$a = "Profile";
+	$b = "profile.php";
+}
 
+else if(!isset($_SESSION["login"])){
+	$a = "Login";
+	$b = "Login.php";
+}
+?>
 	<!-- Navigation -->
 	<nav class="navbar bg-dark navbar-dark navbar-expand-lg">
 		<div class="container">
@@ -30,11 +39,11 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="" class="nav-link">About Us</a></li>
-					<li class="nav-item"><a href="Product.php" class="nav-link active">Products</a></li>
-					<li class="nav-item"><a href="Login.html" class="nav-link">Login</a></li>
-					<li class="nav-item"><a href="Cart.html" class="nav-link">Cart</a></li>
+					<li class="nav-item"><a href="index.php" class="nav-link active">Home</a></li>
+					<li class="nav-item"><a href="AboutUs.php" class="nav-link">About Us</a></li>
+					<li class="nav-item"><a href="Product.php" class="nav-link">Products</a></li>
+					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link"><?php echo $a ?></a></li>
+					<li class="nav-item"><a href="Cart.php" class="nav-link">Cart</a></li>
 				</ul>
 				
 
@@ -53,7 +62,7 @@
 		<div class="carousel-inner">
 
 			<div class="carousel-item active">
-				<img src="img/carousel/1.jpg" alt="" class="w-100">
+				<img src="img/carousel/Overview.jpg" alt="" class="w-100">
 				<div class="carousel-caption">
 					<div class="container">
 						<div class="row justify-content-center">
@@ -61,7 +70,6 @@
 								<h1>Trading Card Cooks</h1>
 								<div class="border-top border-primary w-50 mx-auto my-3"></div>
 								<h3>Cooking up Decks since 20XX</h3>
-								<a href="#" class="btn btn-danger btn-lg">A</a>
 							</div>
 						</div>
 					</div>
@@ -69,7 +77,7 @@
 			</div>
 
 			<div class="carousel-item">
-				<img src="img/carousel/2.jpg" alt="" class="w-100">
+				<img src="img/carousel/Deck.jpg" alt="" class="w-100">
 				<div class="carousel-caption">
 					<div class="container">
 						<div class="row justify-content-center">
@@ -77,7 +85,6 @@
 								<h1>Trading Card Cooks</h1>
 								<div class="border-top border-primary w-50 mx-auto my-3"></div>
 								<h3>Cooking up Decks since 20XX</h3>
-								<a href="#" class="btn btn-danger btn-lg">A</a>
 							</div>
 						</div>
 					</div>
@@ -85,7 +92,7 @@
 			</div>
 
 			<div class="carousel-item">
-				<img src="img/carousel/3.jpg" alt="" class="w-100">
+				<img src="img/carousel/Sealed.jpg" alt="" class="w-100">
 				<div class="carousel-caption">
 					<div class="container">
 						<div class="row justify-content-center">
@@ -93,7 +100,6 @@
 								<h1>Trading Card Cooks</h1>
 								<div class="border-top border-primary w-50 mx-auto my-3"></div>
 								<h3>Cooking up Decks since 20XX</h3>
-								<a href="#" class="btn btn-danger btn-lg">A</a>
 							</div>
 						</div>
 					</div>
@@ -131,24 +137,24 @@
 	<div class="container">
 		<div class="row my-5">
 			<div class="col-md-4 my-4">
-				<img src="img/1.jpg" alt="" class="w-100">
+				<img src="img/Single.jpg" alt="" class="w-100 ">
 				<h4 class="my-4">The Legend of TCC</h4>
-				<p>Hello</p>
-				<a href="#" class="btn btn-outline-dark btn-md">About Us</a>
+				<p>Made by collectors, for the players</p>
+				<a href="AboutUs.php" class="btn btn-outline-dark btn-md">About Us</a>
 			</div>
 
 			<div class="col-md-4 my-4">
-				<img src="img/2.jpg" alt="" class="w-100">
+				<img src="img/Bulk.jpg" alt="" class="w-100 ">
 				<h4 class="my-4">Our Products</h4>
-				<p>Hello</p>
-				<a href="#" class="btn btn-outline-dark btn-md">About Us</a>
+				<p>Quality Guaranteed</p>
+				<a href="Product.php" class="btn btn-outline-dark btn-md">Products</a>
 			</div>
 
 			<div class="col-md-4 my-4">
-				<img src="img/3.jpg" alt="" class="w-100">
-				<h4 class="my-4">Contact Info</h4>
-				<p>Hello</p>
-				<a href="#" class="btn btn-outline-dark btn-md">About Us</a>
+				<img src="img/3Card.jpg" alt="" class="w-100">
+				<h4 class="my-4">Looking for something?</h4>
+				<p>Use "Quick search" to contact us!</p>
+				<a href="CustomerSupport.php" class="btn btn-outline-dark btn-md">Customer Support</a>
 			</div>
 		</div>
 	</div>
