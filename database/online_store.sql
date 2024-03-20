@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2024 at 06:09 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.0.28
+-- Generation Time: Mar 20, 2024 at 05:59 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -37,6 +37,32 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customersupport`
+--
+
+CREATE TABLE `customersupport` (
+  `Ticket_Number` int(11) NOT NULL,
+  `User_ID` int(11) NOT NULL,
+  `Topic` varchar(255) NOT NULL,
+  `Description` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderhistory`
+--
+
+CREATE TABLE `orderhistory` (
+  `Purchase_ID` int(11) NOT NULL,
+  `User_ID` int(11) NOT NULL,
+  `Order_ID` int(11) NOT NULL,
+  `Total` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `products`
 --
 
@@ -54,10 +80,10 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`item_id`, `itemimage`, `itemname`, `description`, `price`, `quantity`) VALUES
-(1, 'img/products/PF_ETB.jpg', 'Paldean Fates Elite Trainer Box', 'lorem ipsum', '3750', '6'),
-(2, 'img/products/GrenEX_BD.jpg', 'Greninja EX Battle Deck', 'lorem ipsum', '850', '2'),
-(3, 'img/products/Squid.webp', 'SQUIDD', 'SQUIDDDD', '200', '1'),
-(4, '/', 'lorem', 'lorem', '100', '2');
+(4, 'img/products/PF_ETB.jpg', 'Paldean Fates Elite Trainer Box', 'lorem ipsum', '3750', '6'),
+(5, 'img/products/GrenEX_BD.jpg', 'Greninja EX Battle Deck', 'lorem ipsum', '850', '2'),
+(7, 'img/products/VesEX.jpg', 'Vespiquen EX Deck', 'Demolish your opponent with the power of Vespiquen EX, utilize the damage counters it can spread to pick apart the opponent\'s bench. Full decklist below.', '1250', '1'),
+(8, 'bleh', 'Temporal Forces ETB', 'A', '3750', '11');
 
 -- --------------------------------------------------------
 
@@ -77,6 +103,14 @@ CREATE TABLE `profile` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `profile`
+--
+
+INSERT INTO `profile` (`user_id`, `username`, `password`, `firstname`, `lastname`, `mobile`, `address`, `email`) VALUES
+(1, 'Ancient', '123', 'Joseph Arsenio', 'Yalung', '09173154982', '162 Ermin Garcia Ave', 'mattermaster813@gmail.com'),
+(2, 'Dedcient', '123', 'Joseph Arsenio', 'Yalung', '09173154982', '162 Ermin Garcia Ave', 'ancientslayer813@gmail.com');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -87,6 +121,18 @@ ALTER TABLE `cart`
   ADD PRIMARY KEY (`order_id`),
   ADD KEY `cart_ibfk_1` (`item_id`),
   ADD KEY `cart_ibfk_2` (`user_id`);
+
+--
+-- Indexes for table `customersupport`
+--
+ALTER TABLE `customersupport`
+  ADD PRIMARY KEY (`Ticket_Number`);
+
+--
+-- Indexes for table `orderhistory`
+--
+ALTER TABLE `orderhistory`
+  ADD PRIMARY KEY (`Purchase_ID`);
 
 --
 -- Indexes for table `products`
@@ -108,19 +154,31 @@ ALTER TABLE `profile`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `order_id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `customersupport`
+--
+ALTER TABLE `customersupport`
+  MODIFY `Ticket_Number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `orderhistory`
+--
+ALTER TABLE `orderhistory`
+  MODIFY `Purchase_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `item_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `item_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `profile`
 --
 ALTER TABLE `profile`
-  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables

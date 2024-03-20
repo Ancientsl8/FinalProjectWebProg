@@ -8,6 +8,7 @@ $user = $_SESSION['user_id'];
 $quantityofitems = 0;
 $price = 0;
 $order_id = 0;
+$shipping = 0;
 	
   $query = "SELECT * FROM `cart` WHERE `user_id` = $user";
   $result = mysqli_query($con, $query);
@@ -139,26 +140,22 @@ $order_id = 0;
                 </div>
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
+                  <form action="record.php" method="POST">
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                     <hr class="my-4">
   
                     <div class="quantityofitems-flex justify-content-between mb-4">
                       <h5 class="text-uppercase">items <?php echo $quantityofitems ?></h5>
-                      <h5><?php echo $price ?></h5>
                     </div>
   
                     <h5 class="text-uppercase mb-3">Shipping</h5>
   
                     <div class="mb-4 pb-2">
-                      <select class="select">
-                        <option value="1">Standard-Delivery- €5.00</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                        <option value="4">Four</option>
+                      <select class="select" name="shipping">
+                        <option value="150">Standard-Delivery - 150 PHP</option>
+                        <option value="350">Express Delivery - 350 PHP</option>
                       </select>
                     </div>
-  
-                    <h5 class="text-uppercase mb-3">Give code</h5>
   
                     <hr class="my-4">
   
@@ -166,9 +163,11 @@ $order_id = 0;
                       <h5 class="text-uppercase">Total price</h5>
                       <h5><?php echo $price ?> PHP</h5>
                     </div>
-  
-                    <button type="button" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark">Register</button>
+                    
+                    <input type="hidden" name="Total" value="<?php echo $price?>">
+                    <input type="submit" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark" value="Checkout"></button>
+                    </form>
                   </div>
                 </div>
               </div>
