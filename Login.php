@@ -42,7 +42,8 @@ else if(!isset($_SESSION["login"])){
         <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="AboutUs.php" class="nav-link">About Us</a></li>
 					<li class="nav-item"><a href="Product.php" class="nav-link">Products</a></li>
-					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link"><?php echo $a ?></a></li>
+          <li class="nav-item"><a href="CustomerSupport.php" class="nav-link">Customer Support</a></li>
+					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link active"><?php echo $a ?></a></li>
 					<li class="nav-item"><a href="Cart.php" class="nav-link">Cart</a></li>
 				</ul>
 				

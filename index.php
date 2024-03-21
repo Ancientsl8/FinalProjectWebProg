@@ -39,9 +39,10 @@ else if(!isset($_SESSION["login"])){
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item"><a href="index.php" class="nav-link active">Home</a></li>
+				<li class="nav-item"><a href="index.php" class="nav-link active">Home</a></li>
 					<li class="nav-item"><a href="AboutUs.php" class="nav-link">About Us</a></li>
 					<li class="nav-item"><a href="Product.php" class="nav-link">Products</a></li>
+          			<li class="nav-item"><a href="CustomerSupport.php" class="nav-link">Customer Support</a></li>
 					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link"><?php echo $a ?></a></li>
 					<li class="nav-item"><a href="Cart.php" class="nav-link">Cart</a></li>
 				</ul>

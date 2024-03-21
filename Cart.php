@@ -8,7 +8,6 @@ $user = $_SESSION['user_id'];
 $quantityofitems = 0;
 $price = 0;
 $order_id = 0;
-$shipping = 0;
 	
   $query = "SELECT * FROM `cart` WHERE `user_id` = $user";
   $result = mysqli_query($con, $query);
@@ -54,8 +53,9 @@ $shipping = 0;
         <li class="nav-item"><a href="index.php" class="nav-link">Home</a></li>
 					<li class="nav-item"><a href="AboutUs.php" class="nav-link">About Us</a></li>
 					<li class="nav-item"><a href="Product.php" class="nav-link">Products</a></li>
+          <li class="nav-item"><a href="CustomerSupport.php" class="nav-link">Customer Support</a></li>
 					<li class="nav-item"><a href="<?php echo $b?>" class="nav-link"><?php echo $a ?></a></li>
-					<li class="nav-item"><a href="Cart.php" class="nav-link">Cart</a></li>
+					<li class="nav-item"><a href="Cart.php" class="nav-link active">Cart</a></li>
 				</ul>
 				
 
@@ -86,6 +86,7 @@ $shipping = 0;
                       while ($row2 = mysqli_fetch_assoc($product_result)){
                         $quantityofitems = $quantityofitems + 1;
                         $price = $price + ($row2["price"] * $row["quantity"]);
+                        $iPrice = ($row2["price"] * $row["quantity"]);
                     ?>
 
                       <hr class="my-4">
@@ -104,7 +105,7 @@ $shipping = 0;
                           <h6 class="mb-0"><?php echo $row["quantity"] ?></h6>
                           </div>
                           <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                            <h6 class="mb-0"><?php echo $price ?> PHP</h6>
+                            <h6 class="mb-0"><?php echo $iPrice ?> PHP</h6>
                           </div>
                           <form method="POST">
 
@@ -140,7 +141,7 @@ $shipping = 0;
                 </div>
                 <div class="col-lg-4 bg-grey">
                   <div class="p-5">
-                  <form action="record.php" method="POST">
+                  <form method="POST">
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                     <hr class="my-4">
   
@@ -163,11 +164,16 @@ $shipping = 0;
                       <h5 class="text-uppercase">Total price</h5>
                       <h5><?php echo $price ?> PHP</h5>
                     </div>
-                    
-                    <input type="hidden" name="Total" value="<?php echo $price?>">
                     <input type="submit" class="btn btn-dark btn-block btn-lg"
-                      data-mdb-ripple-color="dark" value="Checkout"></button>
+                      data-mdb-ripple-color="dark" name="Checkout" value="Checkout">
                     </form>
+
+                    <?php 
+                     if (isset($_REQUEST["Checkout"])){
+                      $DelQuery = "DELETE FROM cart WHERE `cart`.`user_id` = '$user'";
+                      $Delrs = mysqli_query($con, $DelQuery);
+                     }
+                    ?>
                   </div>
                 </div>
               </div>
